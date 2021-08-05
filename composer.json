@@ -1,0 +1,16 @@
+{
+    "name": "zearkiatos/portfolio-web",
+    "description": "It is a project for create and update my portfolio. 👨🏻‍💻 💼",
+    "autoload": {
+        "psr-4": {
+            "Zearkiatos\\PortfolioWeb\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pedro Capriles",
+            "email": "caprilespe@outlook.com"
+        }
+    ],
+    "require": {}
+}
