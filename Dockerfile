@@ -5,7 +5,9 @@ RUN rm -rf vendor
 RUN composer install && \
     composer dump
 RUN wget https://get.symfony.com/cli/installer -O - | bash && \
-    mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+    mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+RUN export PATH="$HOME/.symfony5/bin:$PATH"
     
 RUN symfony server:ca:install
 
