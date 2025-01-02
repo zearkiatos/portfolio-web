@@ -8,6 +8,8 @@ services:
     container_name: portfolio-web
     volumes: 
       - ".:/app"
+    environment:
+      - APP_ENV=dev
     ports:
       - "8001:8000"
     tty: true
