@@ -1,18 +1,14 @@
-FROM composer:2
+FROM php:8.2-cli
 WORKDIR /app
 COPY . .
 
 RUN rm -rf vendor \
-    && composer install \
-    && composer dump-autoload
-
-RUN wget https://get.symfony.com/cli/installer -O - | bash && \
-    mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
-
-RUN export PATH="$HOME/.symfony5/bin:$PATH"
-    
-RUN symfony server:ca:install
+    && if [ -f composer.json ]; then \
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+        && composer install \
+        && composer dump-autoload; \
+    fi
 
 EXPOSE 8000
 
-CMD ["symfony", "server:start", "--allow-http", "--no-tls", "--port=8000", "--listen-ip=0.0.0.0"]
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "/app"]
